@@ -15,8 +15,6 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       path: '/acl',
-      action: 'read',
-      subject: 'client-page',
       title: 'Access Control',
       icon: 'mdi:shield-outline'
     }

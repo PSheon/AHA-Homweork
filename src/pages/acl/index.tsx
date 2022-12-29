@@ -41,9 +41,4 @@ const ACLPage = () => {
   )
 }
 
-ACLPage.acl = {
-  action: 'read',
-  subject: 'client-page'
-}
-
 export default ACLPage
