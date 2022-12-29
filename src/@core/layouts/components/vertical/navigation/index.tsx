@@ -132,8 +132,8 @@ const Navigation = (props: Props) => {
   const ScrollWrapper = hidden ? Box : PerfectScrollbar
 
   return (
-    <Drawer {...props} navHover={navHover} setNavHover={setNavHover}>
-      <VerticalNavHeader {...props} navHover={navHover} />
+    <Drawer {...props} navHover={false} setNavHover={setNavHover}>
+      <VerticalNavHeader {...props} navHover={false} />
       {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'fixed' ? beforeNavMenuContent(props) : null}
       {(beforeVerticalNavMenuContentPosition === 'static' || !beforeNavMenuContent) && (
         <StyledBoxForShadow ref={shadowRef} sx={{ background: shadowBgColor() }} />
@@ -160,7 +160,7 @@ const Navigation = (props: Props) => {
           ) : (
             <List className='nav-items' sx={{ pt: 0, '& > :first-child': { mt: '0' } }}>
               <VerticalNavItems
-                navHover={navHover}
+                navHover={false}
                 groupActive={groupActive}
                 setGroupActive={setGroupActive}
                 currentActiveGroup={currentActiveGroup}
