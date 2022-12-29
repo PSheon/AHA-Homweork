@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-mui-dashboard-template",
-  "version": "1.0.0",
+  "name": "aha-homework",
+  "version": "0.0.1",
   "scripts": {
     "dev": "PORT=8080 next dev",
     "build": "next build",
