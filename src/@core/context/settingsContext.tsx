@@ -15,7 +15,7 @@ export type Settings = {
   mode: Mode
   appBar?: AppBar
   footer?: Footer
-  navHidden?: boolean // navigation menu
+  navHidden?: boolean
   appBarBlur: boolean
   direction: Direction
   navCollapsed: boolean
@@ -32,7 +32,7 @@ export type PageSpecificSettings = {
   mode?: Mode
   appBar?: AppBar
   footer?: Footer
-  navHidden?: boolean // navigation menu
+  navHidden?: boolean
   appBarBlur?: boolean
   direction?: Direction
   navCollapsed?: boolean
@@ -83,7 +83,9 @@ const restoreSettings = (): Settings | null => {
   let settings = null
 
   try {
-    const storedData: string | null = window.localStorage.getItem('settings')
+    /* NOTE: turn this to localStorage later */
+    // const storedData: string | null = window.localStorage.getItem('settings')
+    const storedData: string | null = null
 
     if (storedData) {
       settings = { ...JSON.parse(storedData), ...staticSettings }
