@@ -14,6 +14,9 @@ import type { EmotionCache } from '@emotion/cache'
 // ** Config Imports
 import themeConfig from 'src/configs/themeConfig'
 
+// ** React Query Imports
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 // ** Third Party Import
 import { Toaster } from 'react-hot-toast'
 
@@ -52,6 +55,17 @@ type ExtendedAppProps = AppProps & {
 }
 
 const clientSideEmotionCache = createEmotionCache()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 0
+    },
+    mutations: {
+      retry: 0
+    }
+  }
+})
 
 // ** Pace Loader
 if (themeConfig.routingLoader) {
@@ -90,18 +104,20 @@ const App = (props: ExtendedAppProps) => {
       </Head>
 
       <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
-        <SettingsConsumer>
-          {({ settings }) => {
-            return (
-              <ThemeComponent settings={settings}>
-                <WindowWrapper>{getLayout(<Component {...pageProps} />)}</WindowWrapper>
-                <ReactHotToast>
-                  <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-                </ReactHotToast>
-              </ThemeComponent>
-            )
-          }}
-        </SettingsConsumer>
+        <QueryClientProvider client={queryClient}>
+          <SettingsConsumer>
+            {({ settings }) => {
+              return (
+                <ThemeComponent settings={settings}>
+                  <WindowWrapper>{getLayout(<Component {...pageProps} />)}</WindowWrapper>
+                  <ReactHotToast>
+                    <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
+                  </ReactHotToast>
+                </ThemeComponent>
+              )
+            }}
+          </SettingsConsumer>
+        </QueryClientProvider>
       </SettingsProvider>
     </CacheProvider>
   )
