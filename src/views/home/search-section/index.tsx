@@ -119,7 +119,7 @@ const SearchSection = () => {
             # Of Results Per Page
           </Typography>
 
-          <Typography variant='body1' sx={{ mt: '12px', fontSize: '16px' }}>
+          <Typography variant='body1' sx={{ mt: '4px', fontSize: '16px' }}>
             <Typography component='span' sx={{ fontWeight: 700, fontSize: '48px', mr: '10px' }}>
               {formatPageSize(pageSizeIndex)}
             </Typography>
@@ -140,7 +140,7 @@ const SearchSection = () => {
 
           <Divider />
 
-          <Box sx={{ width: '343px', marginTop: '335px !important' }}>
+          <Box sx={{ width: '343px', marginTop: '337px !important' }}>
             <Button variant='contained' fullWidth onClick={handleSearch}>
               Search
             </Button>
