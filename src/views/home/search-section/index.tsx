@@ -99,13 +99,14 @@ const SearchSection = () => {
       {resultOpen ? (
         <ResultSection pageSize={formatPageSize(pageSizeIndex)} keyword={keyword} setResultOpen={setResultOpen} />
       ) : (
-        <Fragment>
+        <Box sx={{ paddingLeft: '52px' }}>
           <Typography variant='body1' sx={{ fontSize: '24px', mb: '20px' }}>
             Search
           </Typography>
 
           <StyledTextField
             autoFocus
+            fullWidth
             value={keyword}
             onChange={e => setKeyword(e.target.value)}
             placeholder='keyword'
@@ -115,10 +116,10 @@ const SearchSection = () => {
           <Divider />
 
           <Typography variant='body1' sx={{ mt: '30px', fontSize: '24px' }}>
-            # of results per page
+            # Of Results Per Page
           </Typography>
 
-          <Typography variant='body1' sx={{ mt: '20px', fontSize: '16px' }}>
+          <Typography variant='body1' sx={{ mt: '12px', fontSize: '16px' }}>
             <Typography component='span' sx={{ fontWeight: 700, fontSize: '48px', mr: '10px' }}>
               {formatPageSize(pageSizeIndex)}
             </Typography>
@@ -144,7 +145,7 @@ const SearchSection = () => {
               Search
             </Button>
           </Box>
-        </Fragment>
+        </Box>
       )}
     </StyledRootBox>
   )
