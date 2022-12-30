@@ -1,26 +1,25 @@
 // ** MUI Imports
 import { styled } from '@mui/material/styles'
-import Avatar, { AvatarProps } from '@mui/material/Avatar'
-import Stack, { StackProps } from '@mui/material/Stack'
 import Box, { BoxProps } from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
 // ** Types
 import type { ITag } from 'src/types/tagTypes'
 
-// ** Styled RootStack component
-const StyledRootStack = styled(Stack)<StackProps>(() => ({
-  width: '150px'
+// ** Styled RootBox component
+const StyledRootBox = styled(Box)<BoxProps>(() => ({
+  width: '150px',
+  display: 'flex',
+  flexDirection: 'column'
 }))
 
 // ** Styled Avatar component
-const StyledAvatar = styled(Box)<BoxProps>(({ theme }) => ({
+const StyledAvatar = styled(Box)<BoxProps>(({}) => ({
   position: 'relative',
   width: 150,
   height: 150,
   borderRadius: '10px',
-  background: theme.palette.background.paper
+  background: '#262626'
 }))
 
 interface Props {
@@ -32,32 +31,37 @@ const TagCard = (props: Props) => {
   const { tag } = props
 
   return (
-    <StyledRootStack>
+    <StyledRootBox>
       <StyledAvatar>
         <Box
           sx={{
             maxWidth: '136px',
             position: 'absolute',
             p: 2,
-            left: '6px',
-            bottom: '6px',
+            left: '10px',
+            bottom: '14px',
             borderRadius: '8px',
-            border: theme => `2px solid ${theme.palette.common.white}`
+            border: theme => `4px solid ${theme.palette.common.white}`
           }}
         >
-          <Typography variant='body1' noWrap>
+          <Typography variant='body1' noWrap sx={{ fontSize: '24px', fontWeight: 700 }}>
             {tag.name}
           </Typography>
         </Box>
       </StyledAvatar>
 
-      <Box>
-        <Typography variant='body1' noWrap>
+      <Box sx={{ mt: '10px' }}>
+        <Typography variant='body1' noWrap sx={{ fontSize: '14.9px' }}>
           {tag.name}
         </Typography>
-        <Typography variant='body2' color='text.secondary' noWrap>{`${tag.count} Results`}</Typography>
+        <Typography
+          variant='body2'
+          color='text.secondary'
+          noWrap
+          sx={{ fontSize: '11.175px' }}
+        >{`${tag.count} Results`}</Typography>
       </Box>
-    </StyledRootStack>
+    </StyledRootBox>
   )
 }
 

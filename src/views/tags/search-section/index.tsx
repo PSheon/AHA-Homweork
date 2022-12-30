@@ -16,26 +16,28 @@ import { useTagsQuery } from 'src/services/queries/tag.query'
 import type { ITag } from 'src/types/tagTypes'
 
 // ** Styled RootBox component
-const StyledRootBox = styled(Box)<BoxProps>(({ theme }) => ({
+const StyledRootBox = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
   height: '100vh',
   overflowX: 'hidden',
   overflowY: 'scroll',
-  padding: theme.spacing(24, 60)
+  padding: '122px 221px 24px 373px'
 }))
 
 const SearchSection = () => {
   // ** Hooks
-  const { isLoading: isQueryLoading, isError: isQueryError, data: queryData, error: queryError } = useTagsQuery()
+  const { isLoading: isQueryLoading, isError: isQueryError, data: queryData } = useTagsQuery()
   const tags: ITag[] = queryData || []
 
   return (
     <StyledRootBox>
-      <Typography variant='body1'>Tags</Typography>
+      <Typography variant='body1' sx={{ fontSize: '24px', mb: '20px' }}>
+        Tags
+      </Typography>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={6}>
         {isQueryError && (
           <Grid item xs={12}>
             <Typography>something went wrong</Typography>
