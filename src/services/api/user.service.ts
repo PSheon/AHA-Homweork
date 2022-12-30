@@ -23,7 +23,10 @@ export const getInfiniteUsers = async (params: GetInfiniteUsersProps): Promise<G
     url: `https://avl-frontend-exam.herokuapp.com/api/users/${params.type}`,
     params: {
       page: params.page,
-      pageSize: 15
+      pageSize: params.pageSize ?? 15,
+      ...(params.keyword && {
+        keyword: params.keyword
+      })
     }
   })
 

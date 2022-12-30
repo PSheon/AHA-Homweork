@@ -12,7 +12,7 @@ export const useUsersQuery = (params: GetUsersProps) =>
 
 export const useInfiniteUsersQuery = (params: GetInfiniteUsersProps) =>
   useInfiniteQuery<GetUsersResponse>(
-    ['users', params.type],
+    ['users', params.mode],
     ({ pageParam }) =>
       getInfiniteUsers({
         ...params,

@@ -5,8 +5,11 @@ export interface GetUsersProps {
 }
 
 export interface GetInfiniteUsersProps {
+  mode: 'search' | 'all' | 'friends'
   type: 'all' | 'friends'
   page: number
+  pageSize?: number
+  keyword?: string
 }
 
 export interface GetUsersResponse {

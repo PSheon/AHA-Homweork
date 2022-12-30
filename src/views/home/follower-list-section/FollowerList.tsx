@@ -26,7 +26,7 @@ const FollowerList = () => {
     isFetching: isQueryLoading,
     isError: isQueryError,
     data: queryData
-  } = useInfiniteUsersQuery({ type: 'all', page: 1 })
+  } = useInfiniteUsersQuery({ mode: 'all', type: 'all', page: 1 })
   const [sentryRef] = useInfiniteScroll({
     loading: isQueryLoading,
     hasNextPage: hasNextPage ?? true,
