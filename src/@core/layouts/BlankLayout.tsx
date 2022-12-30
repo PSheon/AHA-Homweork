@@ -100,16 +100,32 @@ const BlankLayout = ({ children }: BlankLayoutProps) => {
             </Link>
             <Link href='/tags' style={{ textDecoration: 'none' }}>
               <Stack justifyContent='center' alignItems='center'>
-                <Image
-                  width={24}
-                  height={24}
-                  src={
-                    router.pathname === '/tags'
-                      ? '/images/layout/nav-icon-active.svg'
-                      : '/images/layout/nav-icon-inactive.svg'
-                  }
-                  alt='logo'
-                />
+                <Box sx={{ position: 'relative' }}>
+                  <Image
+                    width={24}
+                    height={24}
+                    src={
+                      router.pathname === '/tags'
+                        ? '/images/layout/nav-icon-active.svg'
+                        : '/images/layout/nav-icon-inactive.svg'
+                    }
+                    alt='logo'
+                  />
+                  {router.pathname !== '/tags' && (
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: '-5px',
+                        right: '-5px',
+                        width: '8px',
+                        height: '8px',
+                        border: '1px solid #1B1B1B',
+                        borderRadius: '50%',
+                        backgroundColor: '#00D1FF'
+                      }}
+                    />
+                  )}
+                </Box>
                 <Typography variant='caption' color='text.primary' sx={{ height: '15px', fontSize: '12px' }}>
                   {router.pathname === '/tags' && 'Tags'}
                 </Typography>
