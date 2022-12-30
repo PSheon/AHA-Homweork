@@ -27,14 +27,15 @@ import { useInfiniteUsersQuery } from 'src/services/queries/user.query'
 import type { IUser } from 'src/types/userTypes'
 
 // ** Styled RootBox component
-const StyledRootBox = styled(Box)<BoxProps>(({ theme }) => ({
+const StyledRootBox = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
   height: '100vh',
   overflowX: 'hidden',
   overflowY: 'scroll',
-  padding: theme.spacing(24, 16)
+  paddingTop: '40px',
+  paddingLeft: '52px'
 }))
 
 interface Props {
@@ -69,22 +70,16 @@ const SearchSection = (props: Props) => {
 
   return (
     <StyledRootBox>
-      <Box sx={{ position: 'relative' }}>
-        <IconButton
-          onClick={handleGoBack}
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: '-2rem',
-            color: 'grey.100'
-          }}
-        >
+      <Box sx={{ display: 'flex', alignItems: 'center', ml: '-52px' }}>
+        <IconButton onClick={handleGoBack} sx={{ mr: '15px' }}>
           <Icon icon='material-symbols:arrow-back-ios-new-rounded' fontSize={26} />
         </IconButton>
-        <Typography variant='body1'>Results</Typography>
+        <Typography variant='body1' sx={{ fontSize: '30px', mt: '0 !important' }}>
+          Results
+        </Typography>
       </Box>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={8} sx={{ mt: '24px' }}>
         {isQueryError && (
           <Grid item xs={12}>
             <Typography>something went wrong</Typography>

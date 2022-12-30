@@ -1,16 +1,16 @@
 // ** MUI Imports
 import { styled } from '@mui/material/styles'
 import Avatar, { AvatarProps } from '@mui/material/Avatar'
-import Stack, { StackProps } from '@mui/material/Stack'
-import Box from '@mui/material/Box'
+import Box, { BoxProps } from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
 // ** Types
 import type { IUser } from 'src/types/userTypes'
 
-// ** Styled RootStack component
-const StyledRootStack = styled(Stack)<StackProps>(() => ({
-  // height: '45px'
+// ** Styled RootBox component
+const StyledRootBox = styled(Box)<BoxProps>(() => ({
+  display: 'flex',
+  flexDirection: 'column'
 }))
 
 // ** Styled Avatar component
@@ -28,17 +28,23 @@ const UserCard = (props: Props) => {
   const { user } = props
 
   return (
-    <StyledRootStack direction='column' spacing={4}>
+    <StyledRootBox>
       <Box>
         <StyledAvatar src={user.avater} alt={user.name} variant='square'>
           {user.name.slice(0, 1)}
         </StyledAvatar>
       </Box>
-      <Box>
-        <Typography variant='body1'>{user.name}</Typography>
-        <Typography variant='body2' color='text.secondary'>{`@${user.username}`}</Typography>
+      <Box sx={{ mt: '12px' }}>
+        <Typography variant='body1' sx={{ fontSize: '14.9px' }}>
+          {user.name}
+        </Typography>
+        <Typography
+          variant='body1'
+          color='text.secondary'
+          sx={{ fontSize: '11.175px' }}
+        >{`@${user.username}`}</Typography>
       </Box>
-    </StyledRootStack>
+    </StyledRootBox>
   )
 }
 

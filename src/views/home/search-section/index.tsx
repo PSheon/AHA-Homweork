@@ -3,8 +3,7 @@ import { useState, Fragment } from 'react'
 
 // ** MUI Imports
 import { styled } from '@mui/material/styles'
-import Stack, { StackProps } from '@mui/material/Stack'
-import Box from '@mui/material/Box'
+import Box, { BoxProps } from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
@@ -41,16 +40,31 @@ const marks = [
   }
 ]
 
-// ** Styled RootStack component
-const StyledRootStack = styled(Stack)<StackProps>(({ theme }) => ({
+// ** Styled RootBox component
+const StyledRootBox = styled(Box)<BoxProps>(({ theme }) => ({
   flexGrow: '1',
+  display: 'flex',
+  flexDirection: 'column',
   height: '100vh',
   overflowY: 'scroll',
-  padding: theme.spacing(20, 24),
+  padding: '54px 130px 24px 158px',
   [theme.breakpoints.down('sm')]: {
     width: '100%'
   }
 }))
+const StyledTextField = styled(TextField)({
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#FF9B33'
+  },
+  '& .MuiOutlinedInput-root': {
+    '&:hover fieldset': {
+      borderColor: '#FF9B33'
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#FF9B33'
+    }
+  }
+})
 
 const SearchSection = () => {
   // ** States
@@ -81,20 +95,37 @@ const SearchSection = () => {
   }
 
   return (
-    <StyledRootStack flexDirection='column' spacing={12}>
+    <StyledRootBox>
       {resultOpen ? (
         <ResultSection pageSize={formatPageSize(pageSizeIndex)} keyword={keyword} setResultOpen={setResultOpen} />
       ) : (
         <Fragment>
-          <Typography variant='body1'>Search</Typography>
+          <Typography variant='body1' sx={{ fontSize: '24px', mb: '20px' }}>
+            Search
+          </Typography>
 
-          <TextField autoFocus value={keyword} onChange={e => setKeyword(e.target.value)} placeholder='keyword' />
+          <StyledTextField
+            autoFocus
+            value={keyword}
+            onChange={e => setKeyword(e.target.value)}
+            placeholder='keyword'
+            sx={{ mt: '0', mb: '30px' }}
+          />
 
           <Divider />
 
-          <Typography variant='body1'># of results per page</Typography>
+          <Typography variant='body1' sx={{ mt: '30px', fontSize: '24px' }}>
+            # of results per page
+          </Typography>
 
-          <Box>
+          <Typography variant='body1' sx={{ mt: '20px', fontSize: '16px' }}>
+            <Typography component='span' sx={{ fontWeight: 700, fontSize: '48px', mr: '10px' }}>
+              {formatPageSize(pageSizeIndex)}
+            </Typography>
+            results
+          </Typography>
+
+          <Box sx={{ mb: '30px' }}>
             <Slider
               size='medium'
               value={pageSizeIndex}
@@ -106,14 +137,16 @@ const SearchSection = () => {
             />
           </Box>
 
-          <Box sx={{ width: '343px', marginTop: 'auto !important' }}>
+          <Divider />
+
+          <Box sx={{ width: '343px', marginTop: '335px !important' }}>
             <Button variant='contained' fullWidth onClick={handleSearch}>
               Search
             </Button>
           </Box>
         </Fragment>
       )}
-    </StyledRootStack>
+    </StyledRootBox>
   )
 }
 
