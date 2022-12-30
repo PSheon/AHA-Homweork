@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, Fragment } from 'react'
+import { useState } from 'react'
 
 // ** MUI Imports
 import { styled } from '@mui/material/styles'
@@ -47,7 +47,6 @@ const StyledRootBox = styled(Box)<BoxProps>(({ theme }) => ({
   flexDirection: 'column',
   height: '100vh',
   overflowY: 'scroll',
-  padding: '54px 130px 24px 158px',
   [theme.breakpoints.down('sm')]: {
     width: '100%'
   }
@@ -99,7 +98,7 @@ const SearchSection = () => {
       {resultOpen ? (
         <ResultSection pageSize={formatPageSize(pageSizeIndex)} keyword={keyword} setResultOpen={setResultOpen} />
       ) : (
-        <Box sx={{ paddingLeft: '52px' }}>
+        <Box sx={{ padding: '54px 130px 24px 210px' }}>
           <Typography variant='body1' sx={{ fontSize: '24px', mb: '20px' }}>
             Search
           </Typography>
