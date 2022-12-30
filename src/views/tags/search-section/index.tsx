@@ -33,7 +33,7 @@ const SearchSection = () => {
 
   return (
     <StyledRootBox>
-      <Typography variant='body1' sx={{ fontSize: '24px', mb: '20px' }}>
+      <Typography variant='body1' sx={{ fontSize: '30px', mb: '24px' }}>
         Tags
       </Typography>
 
