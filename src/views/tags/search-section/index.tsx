@@ -1,7 +1,7 @@
 // ** MUI Imports
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
-import Stack, { StackProps } from '@mui/material/Stack'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'

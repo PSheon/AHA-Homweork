@@ -18,7 +18,6 @@ const StyledRootBox = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   background: theme.palette.background.paper,
-  marginRight: theme.spacing(-12),
   width: '375px',
   height: '100vh',
   [theme.breakpoints.down('sm')]: {

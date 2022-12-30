@@ -1,6 +1,12 @@
+// ** React Imports
+import { ReactNode } from 'react'
+
 // ** MUI Imports
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
+
+// ** Layout Imports
+import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Components Imports
 import SearchSection from 'src/views/tags/search-section'
@@ -20,5 +26,7 @@ const TagsPage = () => {
     </StyledRootBox>
   )
 }
+
+TagsPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
 export default TagsPage
