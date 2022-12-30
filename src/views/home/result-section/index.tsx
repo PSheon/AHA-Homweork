@@ -30,12 +30,11 @@ import type { IUser } from 'src/types/userTypes'
 const StyledRootBox = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   flexDirection: 'column',
-  width: '100%',
+  width: '1065px',
   height: '100vh',
   overflowX: 'hidden',
   overflowY: 'scroll',
-  paddingTop: '40px',
-  paddingLeft: '52px'
+  padding: '92px 130px 24px 210px'
 }))
 
 interface Props {
@@ -79,7 +78,7 @@ const SearchSection = (props: Props) => {
         </Typography>
       </Box>
 
-      <Grid container spacing={8} sx={{ mt: '24px' }}>
+      <Grid container spacing={8} sx={{ pt: '24px' }}>
         {isQueryError && (
           <Grid item xs={12}>
             <Typography>something went wrong</Typography>

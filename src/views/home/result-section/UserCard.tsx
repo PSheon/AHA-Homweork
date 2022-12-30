@@ -42,7 +42,7 @@ const UserCard = (props: Props) => {
           variant='body1'
           color='text.secondary'
           sx={{ fontSize: '11.175px' }}
-        >{`@${user.username}`}</Typography>
+        >{`by ${user.username}`}</Typography>
       </Box>
     </StyledRootBox>
   )
