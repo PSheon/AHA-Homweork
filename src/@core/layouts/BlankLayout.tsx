@@ -46,13 +46,18 @@ const DesktopNavBar = styled(Box)<BoxProps>(({ theme }) => ({
   alignItems: 'center',
   background: theme.palette.background.paper
 }))
-const MobileNavBar = styled(Box)<BoxProps>(({ theme }) => ({
+const MobileNavBar = styled(Box)<BoxProps>(() => ({
   position: 'fixed',
   bottom: 0,
   left: 0,
   width: '100%',
-  height: '68px',
-  background: theme.palette.background.paper
+  height: '66px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  background: 'rgba(24, 24, 24, 0.2)',
+  boxShadow: 'inset 0px 0.5px 0px rgba(0, 0, 0, 0.8)',
+  backDrop: 'blur(27.1828px)'
 }))
 const StyledLink = styled(Link)(() => ({
   width: '100%',
@@ -78,7 +83,16 @@ const BlankLayout = ({ children }: BlankLayoutProps) => {
             </StyledLink>
             <Link href='/' style={{ textDecoration: 'none' }}>
               <Stack justifyContent='center' alignItems='center' sx={{ mb: 6 }}>
-                <Image width={24} height={24} src='/images/layout/nav-icon.svg' alt='logo' />
+                <Image
+                  width={24}
+                  height={24}
+                  src={
+                    router.pathname === '/'
+                      ? '/images/layout/nav-icon-active.svg'
+                      : '/images/layout/nav-icon-inactive.svg'
+                  }
+                  alt='logo'
+                />
                 <Typography variant='caption' color='text.primary' sx={{ height: '15px', ontSize: '12px' }}>
                   {router.pathname === '/' && 'Home'}
                 </Typography>
@@ -86,7 +100,16 @@ const BlankLayout = ({ children }: BlankLayoutProps) => {
             </Link>
             <Link href='/tags' style={{ textDecoration: 'none' }}>
               <Stack justifyContent='center' alignItems='center'>
-                <Image width={24} height={24} src='/images/layout/nav-icon.svg' alt='logo' />
+                <Image
+                  width={24}
+                  height={24}
+                  src={
+                    router.pathname === '/tags'
+                      ? '/images/layout/nav-icon-active.svg'
+                      : '/images/layout/nav-icon-inactive.svg'
+                  }
+                  alt='logo'
+                />
                 <Typography variant='caption' color='text.primary' sx={{ height: '15px', fontSize: '12px' }}>
                   {router.pathname === '/tags' && 'Tags'}
                 </Typography>
@@ -95,7 +118,38 @@ const BlankLayout = ({ children }: BlankLayoutProps) => {
           </DesktopNavBar>
         )}
         {children}
-        {!isDesktop && <MobileNavBar>pending</MobileNavBar>}
+        {!isDesktop && (
+          <MobileNavBar>
+            <Link href='/' style={{ textDecoration: 'none' }}>
+              <Stack justifyContent='center' alignItems='center' sx={{ p: 4 }}>
+                <Image
+                  width={24}
+                  height={24}
+                  src={
+                    router.pathname === '/'
+                      ? '/images/layout/nav-icon-active.svg'
+                      : '/images/layout/nav-icon-inactive.svg'
+                  }
+                  alt='logo'
+                />
+              </Stack>
+            </Link>
+            <Link href='/tags' style={{ textDecoration: 'none' }}>
+              <Stack justifyContent='center' alignItems='center' sx={{ p: 4 }}>
+                <Image
+                  width={24}
+                  height={24}
+                  src={
+                    router.pathname === '/tags'
+                      ? '/images/layout/nav-icon-active.svg'
+                      : '/images/layout/nav-icon-inactive.svg'
+                  }
+                  alt='logo'
+                />
+              </Stack>
+            </Link>
+          </MobileNavBar>
+        )}
       </Box>
     </BlankLayoutWrapper>
   )
