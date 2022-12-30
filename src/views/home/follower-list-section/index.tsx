@@ -10,8 +10,8 @@ import TabPanel from '@mui/lab/TabPanel'
 import TabContext from '@mui/lab/TabContext'
 
 // ** Components Imports
-import FollowerList from 'src/views/home/followerListSection/FollowerList'
-import FollowingList from 'src/views/home/followerListSection/FollowingList'
+import FollowerList from 'src/views/home/follower-list-section/FollowerList'
+import FollowingList from 'src/views/home/follower-list-section/FollowingList'
 
 // ** Styled RootBox component
 const StyledRootBox = styled(Box)<BoxProps>(({ theme }) => ({

@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
 
 // ** Components Imports
-import UserCard from 'src/views/home/followerListSection/UserCard'
+import UserCard from 'src/views/home/follower-list-section/UserCard'
 
 // ** Services Imports
 import { useInfiniteUsersQuery } from 'src/services/queries/user.query'
@@ -18,7 +18,7 @@ import useInfiniteScroll from 'react-infinite-scroll-hook'
 // ** Types
 import type { IUser } from 'src/types/userTypes'
 
-const FollowingList = () => {
+const FollowerList = () => {
   // ** Hooks
   const {
     fetchNextPage,
@@ -26,7 +26,7 @@ const FollowingList = () => {
     isFetching: isQueryLoading,
     isError: isQueryError,
     data: queryData
-  } = useInfiniteUsersQuery({ type: 'friends', page: 1 })
+  } = useInfiniteUsersQuery({ type: 'all', page: 1 })
   const [sentryRef] = useInfiniteScroll({
     loading: isQueryLoading,
     hasNextPage: hasNextPage ?? true,
@@ -72,4 +72,4 @@ const FollowingList = () => {
   )
 }
 
-export default FollowingList
+export default FollowerList
