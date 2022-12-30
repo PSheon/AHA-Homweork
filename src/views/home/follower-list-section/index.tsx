@@ -37,7 +37,7 @@ const FollowerListSection = () => {
   return (
     <StyledRootBox>
       <TabContext value={tabId}>
-        <TabList variant='fullWidth' onChange={handleChangeTabId}>
+        <TabList variant='fullWidth' onChange={handleChangeTabId} sx={{ mt: 8 }}>
           <Tab value='followers' label='Followers' />
           <Tab value='following' label='Following' />
         </TabList>
