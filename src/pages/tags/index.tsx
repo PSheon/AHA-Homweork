@@ -12,11 +12,10 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 import SearchSection from 'src/views/tags/search-section'
 
 // ** Styled RootBox component
-const StyledRootBox = styled(Box)<BoxProps>(({ theme }) => ({
+const StyledRootBox = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   justifyContent: 'center',
-  width: '100%',
-  margin: theme.spacing(-6)
+  width: '100%'
 }))
 
 const TagsPage = () => {

@@ -81,7 +81,7 @@ const BlankLayout = ({ children }: BlankLayoutProps) => {
             <StyledLink href='/'>
               <Image width={35} height={15} src='/images/logos/logo.png' alt='logo' />
             </StyledLink>
-            <Link href='/' style={{ textDecoration: 'none' }}>
+            <Link href='/' style={{ textDecoration: 'none', paddingTop: '7px' }}>
               <Stack justifyContent='center' alignItems='center' sx={{ mb: 6 }}>
                 <Image
                   width={24}
