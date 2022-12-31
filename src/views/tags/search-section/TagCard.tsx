@@ -35,9 +35,15 @@ const TagCard = (props: Props) => {
       <StyledAvatar>
         <Box
           sx={{
-            maxWidth: '136px',
+            maxWidth: {
+              xs: '128px',
+              sm: '136px'
+            },
             position: 'absolute',
-            left: '10px',
+            left: {
+              xs: '14px',
+              sm: '10px'
+            },
             bottom: '11px',
             borderRadius: '8px',
             padding: '3px 14px',
@@ -50,7 +56,19 @@ const TagCard = (props: Props) => {
         </Box>
       </StyledAvatar>
 
-      <Box sx={{ my: '10px' }}>
+      <Box
+        sx={{
+          ml: {
+            xs: '4px',
+            sm: '0px'
+          },
+          mt: '10px',
+          mb: {
+            xs: '0px',
+            sm: '10px'
+          }
+        }}
+      >
         <Typography variant='body1' noWrap sx={{ fontSize: '14.9px' }}>
           {tag.name}
         </Typography>
