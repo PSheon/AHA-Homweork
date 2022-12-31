@@ -9,24 +9,23 @@ import Box, { BoxProps } from '@mui/material/Box'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Components Imports
-import SearchSection from 'src/views/home/search-section'
-import FollowerListSection from 'src/views/home/follower-list-section'
+import SearchSection from 'src/views/tags/search-section'
 
 // ** Styled RootBox component
 const StyledRootBox = styled(Box)<BoxProps>(() => ({
   display: 'flex',
+  justifyContent: 'center',
   width: '100%'
 }))
 
-const HomePage = () => {
+const TagsPage = () => {
   return (
     <StyledRootBox>
       <SearchSection />
-      <FollowerListSection />
     </StyledRootBox>
   )
 }
 
-HomePage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+TagsPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
-export default HomePage
+export default TagsPage

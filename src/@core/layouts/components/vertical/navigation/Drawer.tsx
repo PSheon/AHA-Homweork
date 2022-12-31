@@ -93,7 +93,7 @@ const Drawer = (props: Props) => {
     onMouseEnter: () => {
       // Declared flag to resolve first time flicker issue while trying to collapse the menu
       if (flag || navCollapsed) {
-        setNavHover(true)
+        // setNavHover(true)
         flag = false
       }
     },

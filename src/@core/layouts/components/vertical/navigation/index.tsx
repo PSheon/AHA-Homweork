@@ -147,7 +147,7 @@ const Navigation = (props: Props) => {
                 sx: { height: '100%', overflowY: 'auto', overflowX: 'hidden' }
               }
             : {
-                options: { wheelPropagation: false },
+                options: { wheelPropagation: navHover },
                 onScrollY: (container: any) => scrollMenu(container),
                 containerRef: (ref: any) => handleInfiniteScroll(ref)
               })}
