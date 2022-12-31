@@ -1,7 +1,14 @@
 // ** React Imports
 import { useState } from 'react'
 
+// ** Next Import
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import Image from 'next/image'
+
 // ** MUI Imports
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { Theme } from '@mui/material/styles'
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -9,6 +16,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Slider from '@mui/material/Slider'
+import Stack from '@mui/material/Stack'
 
 // ** Components Imports
 import ResultSection from 'src/views/home/result-section'
@@ -56,6 +64,9 @@ const StyledTextField = styled(TextField)({
     borderBottomColor: '#FF9B33'
   },
   '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderWidth: '3px'
+    },
     '&:hover fieldset': {
       borderColor: '#FF9B33'
     },
@@ -64,8 +75,25 @@ const StyledTextField = styled(TextField)({
     }
   }
 })
+const MobileNavBar = styled(Box)<BoxProps>(() => ({
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  width: '100%',
+  height: '66px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  background: 'rgba(24, 24, 24, 0.2)',
+  boxShadow: 'inset 0px 0.5px 0px rgba(0, 0, 0, 0.8)',
+  backDrop: 'blur(27.1828px)'
+}))
 
 const SearchSection = () => {
+  // ** Hooks
+  const router = useRouter()
+  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'))
+
   // ** States
   const [pageSizeIndex, setPageSizeIndex] = useState(3)
   const [keyword, setKeyword] = useState('')
@@ -98,7 +126,20 @@ const SearchSection = () => {
       {resultOpen ? (
         <ResultSection pageSize={formatPageSize(pageSizeIndex)} keyword={keyword} setResultOpen={setResultOpen} />
       ) : (
-        <Box sx={{ padding: '54px 130px 24px 210px' }}>
+        <Box
+          sx={{
+            padding: {
+              xs: '0px 20px',
+              sm: '54px 130px 24px 210px'
+            }
+          }}
+        >
+          {!isDesktop && (
+            <Box sx={{ height: '70px', display: 'flex', alignItems: 'center' }}>
+              <Image width={35} height={15} src='/images/logos/logo.png' alt='logo' />
+            </Box>
+          )}
+
           <Typography variant='body1' sx={{ fontSize: '24px', mb: '20px' }}>
             Search
           </Typography>
@@ -109,23 +150,36 @@ const SearchSection = () => {
             value={keyword}
             onChange={e => setKeyword(e.target.value)}
             placeholder='keyword'
-            sx={{ mt: '0', mb: '30px' }}
+            sx={{
+              mt: '0',
+              mb: {
+                xs: 0,
+                sm: '30px'
+              }
+            }}
           />
 
-          <Divider />
+          {isDesktop && <Divider />}
 
           <Typography variant='body1' sx={{ mt: '30px', fontSize: '24px' }}>
             # Of Results Per Page
           </Typography>
 
-          <Typography variant='body1' sx={{ mt: '4px', fontSize: '16px' }}>
+          <Typography variant='body1' sx={{ mt: { xs: 0, sm: '4px' }, fontSize: '16px' }}>
             <Typography component='span' sx={{ fontWeight: 700, fontSize: '48px', mr: '10px' }}>
               {formatPageSize(pageSizeIndex)}
             </Typography>
             results
           </Typography>
 
-          <Box sx={{ mb: '30px' }}>
+          <Box
+            sx={{
+              mb: {
+                xs: '210px',
+                sm: '30px'
+              }
+            }}
+          >
             <Slider
               size='medium'
               value={pageSizeIndex}
@@ -139,11 +193,37 @@ const SearchSection = () => {
 
           <Divider />
 
-          <Box sx={{ width: '343px', marginTop: '337px !important' }}>
+          <Box
+            sx={{
+              width: {
+                xs: '100%',
+                sm: '343px'
+              },
+              marginTop: {
+                xs: '78px',
+                sm: '337px !important'
+              }
+            }}
+          >
             <Button variant='contained' fullWidth onClick={handleSearch}>
               Search
             </Button>
           </Box>
+
+          {!isDesktop && router.pathname === '/' && (
+            <MobileNavBar>
+              <Link href='/' style={{ textDecoration: 'none' }}>
+                <Stack justifyContent='center' alignItems='center' sx={{ p: 4 }}>
+                  <Image width={24} height={24} src='/images/layout/nav-icon-active.svg' alt='logo' />
+                </Stack>
+              </Link>
+              <Link href='/tags' style={{ textDecoration: 'none' }}>
+                <Stack justifyContent='center' alignItems='center' sx={{ p: 4 }}>
+                  <Image width={24} height={24} src='/images/layout/nav-icon-inactive.svg' alt='logo' />
+                </Stack>
+              </Link>
+            </MobileNavBar>
+          )}
         </Box>
       )}
     </StyledRootBox>
