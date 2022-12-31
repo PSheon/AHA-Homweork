@@ -14,9 +14,13 @@ const StyledRootBox = styled(Box)<BoxProps>(() => ({
 }))
 
 // ** Styled Avatar component
-const StyledAvatar = styled(Avatar)<AvatarProps>(() => ({
+const StyledAvatar = styled(Avatar)<AvatarProps>(({ theme }) => ({
   width: 219,
-  height: 146
+  height: 146,
+  [theme.breakpoints.down('sm')]: {
+    width: '335px',
+    height: '222.67px'
+  }
 }))
 
 interface Props {
@@ -34,7 +38,7 @@ const UserCard = (props: Props) => {
           {user.name.slice(0, 1)}
         </StyledAvatar>
       </Box>
-      <Box sx={{ mt: '12px' }}>
+      <Box sx={{ mt: { xs: '20px', sm: '12px' }, mb: { xs: '8px', sm: '0px' } }}>
         <Typography variant='body1' sx={{ fontSize: '14.9px' }}>
           {user.name}
         </Typography>

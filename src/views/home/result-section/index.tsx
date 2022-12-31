@@ -1,7 +1,12 @@
 // ** React Imports
 import { Dispatch, SetStateAction } from 'react'
 
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { Theme } from '@mui/material/styles'
 import { styled } from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
 import Box, { BoxProps } from '@mui/material/Box'
@@ -30,11 +35,9 @@ import type { IUser } from 'src/types/userTypes'
 const StyledRootBox = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   flexDirection: 'column',
-  width: '1065px',
   height: '100vh',
   overflowX: 'hidden',
-  overflowY: 'scroll',
-  padding: '92px 130px 24px 210px'
+  overflowY: 'scroll'
 }))
 
 interface Props {
@@ -48,6 +51,7 @@ const SearchSection = (props: Props) => {
   const { pageSize, keyword, setResultOpen } = props
 
   // ** Hooks
+  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'))
   const queryClient = useQueryClient()
   const {
     fetchNextPage,
@@ -68,15 +72,67 @@ const SearchSection = (props: Props) => {
   }
 
   return (
-    <StyledRootBox>
-      <Box sx={{ display: 'flex', alignItems: 'center', ml: '-52px' }}>
-        <IconButton onClick={handleGoBack} sx={{ mr: '15px' }}>
-          <Icon icon='material-symbols:arrow-back-ios-new-rounded' fontSize={26} />
-        </IconButton>
-        <Typography variant='body1' sx={{ fontSize: '30px', mt: '0 !important' }}>
-          Results
-        </Typography>
-      </Box>
+    <StyledRootBox
+      sx={{
+        width: {
+          cs: '100%',
+          sm: '1065px'
+        },
+        padding: {
+          xs: '16px',
+          sm: '92px 130px 24px 210px'
+        }
+      }}
+    >
+      {!isDesktop && (
+        <Box
+          sx={{
+            height: '70px',
+            ml: '-8px',
+            mb: '30px',
+            display: 'flex',
+            alignItems: 'center',
+            textDecoration: 'none'
+          }}
+          component={Link}
+          href='/'
+        >
+          <IconButton sx={{ mr: '6px' }}>
+            <Icon icon='material-symbols:arrow-back-ios-new-rounded' fontSize={26} />
+          </IconButton>
+          <Typography variant='body1' sx={{ fontSize: '24px', mt: '0 !important' }}>
+            Home Page
+          </Typography>
+        </Box>
+      )}
+      {isDesktop ? (
+        <Box sx={{ display: 'flex', alignItems: 'center', ml: '-52px' }}>
+          <IconButton onClick={handleGoBack} sx={{ mr: '15px' }}>
+            <Icon icon='material-symbols:arrow-back-ios-new-rounded' fontSize={26} />
+          </IconButton>
+          <Typography
+            variant='body1'
+            sx={{
+              fontSize: '30px',
+              mt: '0 !important'
+            }}
+          >
+            Results
+          </Typography>
+        </Box>
+      ) : (
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography
+            variant='body1'
+            sx={{
+              fontSize: '24px',
+              mt: '0 !important'
+            }}
+          >
+            Results
+          </Typography>
+        </Box>
+      )}
 
       <Grid container spacing={8} sx={{ pt: '24px' }}>
         {isQueryError && (
@@ -98,11 +154,19 @@ const SearchSection = (props: Props) => {
         {isQueryLoading &&
           [...Array(15).keys()].map(sIndex => (
             <Grid key={`users-skeleton-${sIndex}`} item>
-              <Stack spacing={4}>
-                <Skeleton variant='rounded' width={219} height={146} />
-                <Skeleton variant='rounded' width={100} height={20} />
-                <Skeleton variant='rounded' width={80} height={10} />
-              </Stack>
+              {isDesktop ? (
+                <Stack spacing={4}>
+                  <Skeleton variant='rectangular' width={219} height={146} />
+                  <Skeleton variant='rectangular' width={100} height={20} />
+                  <Skeleton variant='rectangular' width={80} height={10} />
+                </Stack>
+              ) : (
+                <Stack spacing={2}>
+                  <Skeleton variant='rectangular' width={335} height={222.67} />
+                  <Skeleton variant='rectangular' width={90} height={25} />
+                  <Skeleton variant='rectangular' width={70} height={20} />
+                </Stack>
+              )}
             </Grid>
           ))}
         {hasNextPage && (
