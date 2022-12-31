@@ -18,15 +18,34 @@ const UserThemeOptions = (): ThemeOptions => {
   // const palette = corePalette(mode, skin)
 
   return {
-    /*
-    palette:{
+    palette: {
       primary: {
-        light: '#787EFF',
-        main: '#666CFF',
-        dark: '#5A5FE0',
-        contrastText: '#FFF'
+        light: '#FFFFFF',
+        main: '#FFFFFF',
+        dark: '#FFFFFF',
+        contrastText: '#000000'
+      },
+      secondary: {
+        light: '#000000',
+        main: '#000000',
+        dark: '#000000',
+        contrastText: '#FFFFFF'
+      },
+      background: {
+        paper: '#1B1B1B',
+        default: '#181818'
+      },
+      text: {
+        primary: '#FFFFFF',
+        secondary: `#888888`
       }
     },
+    typography: {
+      fontFamily:
+        '"Ubuntu", "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"'
+    }
+
+    /*
     breakpoints: {
       values: {
         xs: 0,
