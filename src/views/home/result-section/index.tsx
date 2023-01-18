@@ -1,9 +1,6 @@
 // ** React Imports
 import { Dispatch, SetStateAction } from 'react'
 
-// ** Next Import
-import Link from 'next/link'
-
 // ** MUI Imports
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { Theme } from '@mui/material/styles'
@@ -94,10 +91,8 @@ const SearchSection = (props: Props) => {
             alignItems: 'center',
             textDecoration: 'none'
           }}
-          component={Link}
-          href='/'
         >
-          <IconButton sx={{ mr: '6px' }}>
+          <IconButton onClick={handleGoBack} sx={{ mr: '6px' }}>
             <Icon icon='material-symbols:arrow-back-ios-new-rounded' fontSize={26} />
           </IconButton>
           <Typography variant='body1' sx={{ fontSize: '24px', mt: '0 !important' }}>

@@ -34,6 +34,9 @@ import ReactHotToast from 'src/@core/styles/libs/react-hot-toast'
 // ** Utils Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
 
+// ** Google analytics
+import { GoogleAnalytics } from 'nextjs-google-analytics'
+
 // ** Prismjs Styles
 import 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
@@ -109,7 +112,10 @@ const App = (props: ExtendedAppProps) => {
             {({ settings }) => {
               return (
                 <ThemeComponent settings={settings}>
-                  <WindowWrapper>{getLayout(<Component {...pageProps} />)}</WindowWrapper>
+                  <WindowWrapper>
+                    <GoogleAnalytics trackPageViews />
+                    {getLayout(<Component {...pageProps} />)}
+                  </WindowWrapper>
                   <ReactHotToast>
                     <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
                   </ReactHotToast>
